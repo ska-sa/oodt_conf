@@ -32,12 +32,13 @@ OPTION_CONF="file:///usr/local/oodt/conf/cas-crawler-rts/policy/cmd-line-options
 MIME_EXTRACTOR_MAP="/usr/local/oodt/conf/cas-crawler-rts/policy/mime-extractor-map.xml"
 
 FILEMGR_URL="http://localhost:9101"
-WORKFLOW_URL="http://localhost:9103"
+WORKFLOW_URL="http://192.168.1.50:9103"
 
-PRODUCT_PATH="/var/kat/data/staging/nfs_rts"
+PRODUCT_PATH="/var/kat/data/staging/"
 FAIL_DIR="/var/kat/data/failed"
+SUCCESS_DIR="/var/kat/data/nfs_staging"
 
-ACTION_IDS="Unique MoveDataFileToFailureDir MoveMetadataFileToFailureDir DeleteDataFile DeleteMetadataFile TriggerAutoImagerInform"
+ACTION_IDS="Unique MoveDataFileToFailureDir MoveMetadataFileToFailureDir MoveDataFileToBackupDir"
 TRANSFERER="org.apache.oodt.cas.filemgr.datatransfer.LocalDataTransferFactory"
 WAIT=20
 PORT=9102
@@ -45,7 +46,7 @@ PORT=9102
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 JAVA_ARGS="-Djava.ext.dirs=${LIB} -Djava.util.logging.config.file=${LOG} -Dorg.apache.oodt.cas.crawl.bean.repo=${CONF} -Dorg.apache.oodt.cas.cli.action.spring.config=${ACTION_CONF} -Dorg.apache.oodt.cas.cli.option.spring.config=${OPTION_CONF} ${CLASS}"
-PROC_ARGS="--filemgrUrl ${FILEMGR_URL} --operation --launchAutoCrawler --productPath ${PRODUCT_PATH} --actionIds ${ACTION_IDS} --clientTransferer ${TRANSFERER} --daemonPort ${PORT} --daemonWait ${WAIT} --failureDir ${FAIL_DIR} --noRecur --mimeExtractorRepo ${MIME_EXTRACTOR_MAP} --workflowMgrUrl ${WORKFLOW_URL}"
+PROC_ARGS="--filemgrUrl ${FILEMGR_URL} --operation --launchAutoCrawler --productPath ${PRODUCT_PATH} --actionIds ${ACTION_IDS} --clientTransferer ${TRANSFERER} --daemonPort ${PORT} --daemonWait ${WAIT} --failureDir ${FAIL_DIR} --successDir ${SUCCESS_DIR} --noRecur --mimeExtractorRepo ${MIME_EXTRACTOR_MAP} --workflowMgrUrl ${WORKFLOW_URL}"
 DAEMON_ARGS="$JAVA_ARGS $PROC_ARGS"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
