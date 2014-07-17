@@ -32,7 +32,7 @@ OPTION_CONF="file:///usr/local/oodt/conf/cas-crawler-rts/policy/cmd-line-options
 MIME_EXTRACTOR_MAP="/usr/local/oodt/conf/cas-crawler-rts/policy/mime-extractor-map.xml"
 
 FILEMGR_URL="http://localhost:9101"
-WORKFLOW_URL="http://localhost:9104"
+WORKFLOW_URL="http://localhost:9103"
 
 PRODUCT_PATH="/var/kat/data/staging/nfs_rts"
 FAIL_DIR="/var/kat/data/failed"
